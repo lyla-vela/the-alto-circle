@@ -32,12 +32,23 @@ def get_supabase():
         or os.getenv("SUPABASE_ANON_KEY", "").strip()
     )
     if not url or not key:
+        # TEMPORARY DEBUG — remove after diagnosis. Logs presence/length only, never values.
+        print(
+            f"[TEMP DEBUG] supabase not configured: url_set={bool(url)} key_set={bool(key)} url_len={len(url)} key_len={len(key)}",
+            flush=True,
+        )
         return None
     try:
         from supabase import create_client
 
         _client = create_client(url, key)
-    except Exception:
+        # TEMPORARY DEBUG — remove after diagnosis.
+        print("[TEMP DEBUG] supabase create_client succeeded", flush=True)
+    except Exception as exc:  # TEMPORARY DEBUG — remove after diagnosis.
+        print(
+            f"[TEMP DEBUG] supabase create_client failed: {type(exc).__name__}: {exc}",
+            flush=True,
+        )
         _client = None
     return _client
 
