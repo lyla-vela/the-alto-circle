@@ -16,7 +16,7 @@ from supabase_client import insert_row, supabase_configured, table_rows
 app = FastAPI(title="The Alto Circle API")
 app.add_middleware(
     CORSMiddleware,
-    allow_origins=["http://localhost:3000"],
+    allow_origins=["http://localhost:3000", "https://the-alto-circle.vercel.app"],
     allow_methods=["*"],
     allow_headers=["*"],
 )
